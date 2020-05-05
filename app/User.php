@@ -19,6 +19,6 @@ class User extends Model
     public $incrementing = false;
 
     public function candidature(){
-        return $this->hasOne('App\Candidature');
+        return $this->hasOne('App\Candidature', 'email', 'email');
     }
 }

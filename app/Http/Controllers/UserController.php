@@ -31,6 +31,23 @@ class UserController extends Controller
         return view("test", compact("nom"));
     }
 
+    public function connexionUser(Request $request){
+        $email = $request->input("email");
+        $password = $request->input("password");
+
+        $var = User::where(["email"=>$email, "password"=>$password])->first();
+        if($var != NULL){
+            return view("test", compact("var"));
+        }
+        else{
+            return view("index");
+        }
+        // echo $email;
+        // echo $password;
+        // print_r($var);
+        
+    }
+
 
     /**
      * Display a listing of the resource.

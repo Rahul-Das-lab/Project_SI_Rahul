@@ -13,6 +13,7 @@
         <div class="mainzone">
         <h1 style="text-align: center;"> Projet Miage </h1>
             <a href="/inscription">Inscription</a>
+            <a href="/connexion">Connexion</a>
         </div>
     </body>
 </html>

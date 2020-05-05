@@ -6,7 +6,7 @@
     <title>Document</title>
 </head>
 <body>
-    <h3> Bienvenue {{ $nom }} </h3>
     
+    <h3> Connecté {{ $var->candidature }} </h3>
 </body>
 </html>

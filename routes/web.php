@@ -25,5 +25,12 @@ Route::get('/inscription', function () {
     return view("inscription");
 });
 
+//Ajouter un user
 Route::post('/addUser', 'UserController@add');
 
+//page de connexion
+Route::get('/connexion', function () {
+    return view("connexion");
+});
+
+Route::post('/connectUser', "UserController@connexionUser");
