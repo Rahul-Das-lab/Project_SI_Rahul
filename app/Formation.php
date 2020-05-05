@@ -10,4 +10,7 @@ class Formation extends Model
         'name',
     ];
 
+    public function candidature(){
+        return $this->hasOne('App\Candidature');
+    }
 }
