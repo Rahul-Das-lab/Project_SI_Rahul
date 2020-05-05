@@ -7,6 +7,31 @@ use Illuminate\Http\Request;
 
 class UserController extends Controller
 {
+
+    public function add(Request $request){
+        $nom = $request->input("nom");
+        $prenom = $request->input("prenom");
+        $email = $request->input("email");
+        $password = $request->input("mdp");
+        $cardid = $request->input("nocarteid");
+        $birth_date = $request->input("datenaiss");
+        $address = $request->input("adrpostale");
+        $notel = $request->input("notel");
+
+        User::create([
+            "email" => $email,
+            "name" => $nom,
+            "firstname" => $prenom,
+            "password" => $password,
+            "card_id" => $password,
+            "birth_date" => $birth_date,
+            "address" => $address,
+            "notel" => $notel
+        ]);
+        return view("test", compact("nom"));
+    }
+
+
     /**
      * Display a listing of the resource.
      *

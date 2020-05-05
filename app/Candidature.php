@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Candidature extends Model
 {
+    public $timestamps = false;
     protected $fillable = [
         'status_id', 'formation_id', 'type', 'email', 'curriculumvitae', 'lettermotivation', 'notes', 'screenshotENT', 'identity',
     ];
@@ -19,4 +20,5 @@ class Candidature extends Model
     public function formation(){
         return $this->belongsTo('App\Candidature');
     }
+
 }

@@ -23,8 +23,8 @@ class CreateUsersTable extends Migration
             $table->date("birth_date")->nullable();
             $table->string("address")->nullable();
             $table->integer("notel")->nullable();
-            $table->boolean("type");
-            $table->string("comment");
+            $table->boolean("type")->default(0);
+            $table->string("comment")->nullable();
         });
     }
 

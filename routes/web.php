@@ -13,6 +13,17 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+
+//Page d'accueil
 Route::get('/', function () {
-    return view('welcome');
+    return view("index");
 });
+
+
+//Aller à la page inscription
+Route::get('/inscription', function () {
+    return view("inscription");
+});
+
+Route::post('/addUser', 'UserController@add');
+
