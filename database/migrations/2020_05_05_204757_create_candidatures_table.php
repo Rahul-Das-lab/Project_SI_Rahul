@@ -15,14 +15,19 @@ class CreateCandidaturesTable extends Migration
     {
         Schema::create('candidatures', function (Blueprint $table) {
             $table->id();
+            $table->bigInteger("status_id");
+            $table->bigInteger("formation_id");
             $table->string("type");
-            $table->foreign('email')->references('email')->on('users');
-            //$table->string("email");
+            $table->string("email");
             $table->string("curriculumvitae");
             $table->string("lettermotivation");
             $table->string("notes");
             $table->string("screenshotENT");
             $table->string("identity");
+
+            $table->foreign('email')->references('email')->on('users');
+            $table->foreign('status_id')->references('id')->on('status');
+            $table->foreign('formation_id')->references('id')->on('formation');
         });
     }
 
