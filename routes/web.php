@@ -19,6 +19,7 @@ Route::get('/', function () {
     return view("index");
 });
 
+//Page d'accueil connecté
 Route::get('/home', function() {
     return view('home');
 });
@@ -28,21 +29,35 @@ Route::get('/inscription', function () {
     return view("inscription");
 });
 
-//Ajouter un user
-Route::post('/addUser', 'UserController@add');
+//Aller à modifer profil
+Route::get('/home/profil', function() {
+    return view('profil');
+});
 
-//page de connexion
+//Aller page de connexion
 Route::get('/connexion', function () {
     return view("connexion");
 });
 
-//Connexion
-Route::post('/connectUser', "UserController@connexionUser")->name("connectUser");
+//Aller à la page de candidature
+Route::get('/home/apply', function() {
+    return view('apply');
+});
 
-//Aller à modifer profil
-Route::get('/home/profil', function() {
-        return view('profil');
+//Aller à la page de dépôt de commentaire
+Route::get('/home/commentToAdmin', function() {
+    return view('commentToAdmin');
 });
 
 
-Route::post('/modifProfil', "UserController@modifierProfil");
+
+//Ajouter un user
+Route::post('/addUser', 'UserController@add');
+
+
+//Connexion
+Route::post('/connectUser', "UserController@connexionUser")->name("connectUser");
+
+
+//Modifier le profil
+Route::post('/modifProfil', 'UserController@modifierProfil');

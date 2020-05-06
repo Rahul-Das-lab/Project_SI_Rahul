@@ -15,8 +15,8 @@
         <ul class="list-group">
             <li class="list-group-item">
                 <a href="/home/profil"> Modifier le profil</a><br>
-                <a href="#"> Déposer une candidature</a><br>
-                <a href="#"> Envoyer un message à l'administrateur</a>
+                <a href="/home/apply"> Déposer une candidature</a><br>
+                <a href="/home/commentToAdmin"> Envoyer un message à l'administrateur</a>
             </li>
         </ul>
     </div>

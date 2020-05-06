@@ -63,21 +63,42 @@ class UserController extends Controller
     }
 
     public function modifierProfil(Request $request){
+        $request->flashExcept('password');
+
         $name = $request->input("name");
         $firstname = $request->input("firstname");
         $email = $request->input("email");
         $password = $request->input("password");
-        $cardid = $request->input("card_id");
+        $card_id = $request->input("card_id");
         $birth_date = $request->input("birth_date");
         $address = $request->input("address");
         $notel = $request->input("notel");
 
-        $find = User::where(["email"=>$email, "password"=>$password])->first();
-        if($find != NULL){
+        $user = User::find($email);
+        if($user){
 
+            $user->update([
+                "email"=>$email,
+                "name"=>$name,
+                "firstname"=>$firstname,
+                "password"=>$password,
+                "card_id"=>$card_id,
+                "birth_date"=>$birth_date,
+                "address"=>$address,
+                "notel"=>$notel
+                ]);
+
+            
+
+            $user->save();
+
+            session()->put('user',$user);
+            return redirect("home");
         }
         else{
-
+            return redirect("home/profil")->withInput(
+                $request->except('password')
+            );
         }
     }
 
