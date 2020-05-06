@@ -7,20 +7,20 @@
 </head>
 	<body>
 
-		
-		<form method="POST" action="/connectUser">
-            @csrf
-			<h3> Connexion étudiant </h3>
-		  <div class="form-group">
-		    <label for="exampleInputEmail1">Adresse email</label>
-		    <input type="email" class="form-control" id="email" placeholder="Votre adresse mail" name="email">
-		  </div>
-		  <div class="form-group">
-		    <label for="exampleInputPassword1">Mot de passe</label>
-		    <input type="password" class="form-control" id="mdp" placeholder="Mot de passe" name="password">
-		  </div>
-		  <button type="submit" class="btn btn-success" style="width:100%">Valider</button>
-		</form>
-
+		<div class="mainzone">
+            <form method="POST" action="/connectUser">
+                @csrf
+                <h3> Connexion étudiant </h3>
+            <div class="form-group">
+                <label for="exampleInputEmail1">Adresse email</label>
+                <input type="email" class="form-control" id="email" placeholder="Votre adresse mail" name="email">
+            </div>
+            <div class="form-group">
+                <label for="exampleInputPassword1">Mot de passe</label>
+                <input type="password" class="form-control" id="mdp" placeholder="Mot de passe" name="password">
+            </div>
+            <button type="submit" class="btn btn-success" style="width:100%">Valider</button>
+            </form>
+        </div>
 	</body>
 </html>

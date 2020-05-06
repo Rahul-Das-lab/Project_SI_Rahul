@@ -12,8 +12,14 @@
     <body>
         <div class="mainzone">
         <h1 style="text-align: center;"> Projet Miage </h1>
-            <a href="/inscription">Inscription</a>
-            <a href="/connexion">Connexion</a>
+        <ul class="list-group">
+            <li class="list-group-item">
+  	            <a href="/inscription"> Page d'inscription </a>
+            </li>
+            <li class="list-group-item">
+  	            <a href="/connexion"> Page de connexion </a>
+            </li>
+        </ul>
         </div>
     </body>
 </html>

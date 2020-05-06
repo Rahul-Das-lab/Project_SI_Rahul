@@ -19,6 +19,9 @@ Route::get('/', function () {
     return view("index");
 });
 
+Route::get('/home', function() {
+    return view('home');
+});
 
 //Aller à la page inscription
 Route::get('/inscription', function () {
@@ -33,4 +36,13 @@ Route::get('/connexion', function () {
     return view("connexion");
 });
 
-Route::post('/connectUser', "UserController@connexionUser");
+//Connexion
+Route::post('/connectUser', "UserController@connexionUser")->name("connectUser");
+
+//Aller à modifer profil
+Route::get('/home/profil', function() {
+        return view('profil');
+});
+
+
+Route::post('/modifProfil', "UserController@modifierProfil");

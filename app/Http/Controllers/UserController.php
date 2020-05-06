@@ -9,26 +9,39 @@ class UserController extends Controller
 {
 
     public function add(Request $request){
+        $request->flashExcept('password');
+
         $nom = $request->input("nom");
         $prenom = $request->input("prenom");
         $email = $request->input("email");
-        $password = $request->input("mdp");
+        $password = $request->input("password");
         $cardid = $request->input("nocarteid");
         $birth_date = $request->input("datenaiss");
         $address = $request->input("adrpostale");
         $notel = $request->input("notel");
-
-        User::create([
-            "email" => $email,
-            "name" => $nom,
-            "firstname" => $prenom,
-            "password" => $password,
-            "card_id" => $password,
-            "birth_date" => $birth_date,
-            "address" => $address,
-            "notel" => $notel
-        ]);
-        return view("test", compact("nom"));
+        
+        $check = User::find($email);
+        if(!$check){
+            $var = User::create([
+                "email" => $email,
+                "name" => $nom,
+                "firstname" => $prenom,
+                "password" => $password,
+                "card_id" => $password,
+                "birth_date" => $birth_date,
+                "address" => $address,
+                "notel" => $notel
+            ]);
+            if($var != NULL){
+                return $this->connexionUser($request);
+            }
+        }
+        else{
+            return redirect("inscription")->withInput(
+                $request->except('password')
+            );
+        }
+  
     }
 
     public function connexionUser(Request $request){
@@ -37,10 +50,11 @@ class UserController extends Controller
 
         $var = User::where(["email"=>$email, "password"=>$password])->first();
         if($var != NULL){
-            return view("test", compact("var"));
+            session()->put('user',$var);
+            return redirect("home");
         }
         else{
-            return view("index");
+            return view("connexion");
         }
         // echo $email;
         // echo $password;
@@ -48,6 +62,24 @@ class UserController extends Controller
         
     }
 
+    public function modifierProfil(Request $request){
+        $name = $request->input("name");
+        $firstname = $request->input("firstname");
+        $email = $request->input("email");
+        $password = $request->input("password");
+        $cardid = $request->input("card_id");
+        $birth_date = $request->input("birth_date");
+        $address = $request->input("address");
+        $notel = $request->input("notel");
+
+        $find = User::where(["email"=>$email, "password"=>$password])->first();
+        if($find != NULL){
+
+        }
+        else{
+
+        }
+    }
 
     /**
      * Display a listing of the resource.
