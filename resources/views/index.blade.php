@@ -10,7 +10,7 @@
 
     </head>
     <body>
-        <div class="mainzone">
+        <div class="mainzone" style="margin-top:15%">
         <h1 style="text-align: center;"> Projet Miage </h1>
         <ul class="list-group">
             <li class="list-group-item">

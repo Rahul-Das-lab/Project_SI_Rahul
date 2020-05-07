@@ -8,7 +8,7 @@ class Candidature extends Model
 {
     public $timestamps = false;
     protected $fillable = [
-        'status_id', 'formation_id', 'type', 'email', 'curriculumvitae', 'lettermotivation', 'notes', 'screenshotENT', 'identity',
+        'status_id', 'formation_id', 'type', 'email', 'curriculumvitae', 'formulaireInscription', 'lettermotivation', 'notes', 'screenshotENT', 'identity',
     ];
 
     public function user(){

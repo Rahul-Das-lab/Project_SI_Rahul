@@ -9,14 +9,14 @@
 </head>
 
 <body>
-    
-    <div class="mainzone">
+    <div class="mainzone" style="margin-top:15%">
         <h3> Bienvenue {{ session('user')->firstname }} </h3>
         <ul class="list-group">
             <li class="list-group-item">
                 <a href="/home/profil"> Modifier le profil</a><br>
                 <a href="/home/apply"> Déposer une candidature</a><br>
-                <a href="/home/commentToAdmin"> Envoyer un message à l'administrateur</a>
+                <a href="/home/commentToAdmin"> Envoyer un message à l'administrateur</a><br>
+                <a href="/index">Déconnexion </a>
             </li>
         </ul>
     </div>

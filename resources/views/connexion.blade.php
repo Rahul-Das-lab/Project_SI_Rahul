@@ -7,10 +7,10 @@
 </head>
 	<body>
 
-		<div class="mainzone">
+		<div class="mainzone" style="margin-top:15%">
             <form method="POST" action="/connectUser">
                 @csrf
-                <h3> Connexion étudiant </h3>
+                <h3> Connexion </h3>
             <div class="form-group">
                 <label for="exampleInputEmail1">Adresse email</label>
                 <input type="email" class="form-control" id="email" placeholder="Votre adresse mail" name="email">

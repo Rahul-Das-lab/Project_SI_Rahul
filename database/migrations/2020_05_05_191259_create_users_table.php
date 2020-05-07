@@ -22,7 +22,7 @@ class CreateUsersTable extends Migration
             $table->string("card_id")->nullable();
             $table->date("birth_date")->nullable();
             $table->string("address")->nullable();
-            $table->integer("notel")->nullable();
+            $table->string("notel")->nullable();
             $table->boolean("type")->default(0);
             $table->string("comment")->nullable();
         });

@@ -15,7 +15,7 @@ use Illuminate\Support\Facades\Route;
 
 
 //Page d'accueil
-Route::get('/', function () {
+Route::get('/index', function () {
     return view("index");
 });
 
@@ -61,3 +61,11 @@ Route::post('/connectUser', "UserController@connexionUser")->name("connectUser")
 
 //Modifier le profil
 Route::post('/modifProfil', 'UserController@modifierProfil');
+
+
+//Envoyer un commentaire
+Route::post('/sendComment', 'UserController@comment');
+
+
+//Dépot de candidature
+Route::post('/candidate', 'CandidatureController@apply');

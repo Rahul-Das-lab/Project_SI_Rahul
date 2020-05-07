@@ -20,6 +20,7 @@ class CreateCandidaturesTable extends Migration
             $table->string("type");
             $table->string("email");
             $table->string("curriculumvitae");
+            $table->string("formulaireInscription");
             $table->string("lettermotivation");
             $table->string("notes");
             $table->string("screenshotENT");

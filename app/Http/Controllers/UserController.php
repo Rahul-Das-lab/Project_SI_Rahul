@@ -1,7 +1,8 @@
 <?php
 
 namespace App\Http\Controllers;
-
+use Redirect;
+use Session;
 use App\User;
 use Illuminate\Http\Request;
 
@@ -37,7 +38,8 @@ class UserController extends Controller
             }
         }
         else{
-            return redirect("inscription")->withInput(
+            Session::flash('errorInscription', 'email déjà utilisé');
+            return redirect('inscription')->withInput(
                 $request->except('password')
             );
         }
@@ -73,7 +75,7 @@ class UserController extends Controller
         $birth_date = $request->input("birth_date");
         $address = $request->input("address");
         $notel = $request->input("notel");
-
+        
         $user = User::find($email);
         if($user){
 
@@ -93,14 +95,65 @@ class UserController extends Controller
             $user->save();
 
             session()->put('user',$user);
-            return redirect("home");
+            Session::flash('messageSuccess', "Modifications effectuées");
+            return Redirect::back();
         }
         else{
-            return redirect("home/profil")->withInput(
-                $request->except('password')
-            );
+
+            echo $email;
+            // Session::flash('messageError', "Erreur lors de la modification");
+            // return Redirect::back()->withInput(
+            //     $request->except('password')
+            // );
+            
         }
     }
+
+    public function comment(Request $request){
+        $comment = $request->input('comment');
+        $email = session('user')->email;
+        $user = User::find($email);
+        if($user){
+
+            $user->update([
+                "comment"=>$comment
+                ]);
+            $user->save();
+
+            session()->put('user',$user);
+            Session::flash('messageSuccess', "Votre commentaire a bien été envoyé.");
+            return Redirect::back();
+        }
+        else{
+            Session::flash('messageError', "Erreur lors de l'envoie du commentaire.");
+            return Redirect::back();
+        }
+        
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
     /**
      * Display a listing of the resource.
