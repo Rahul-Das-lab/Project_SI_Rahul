@@ -31,6 +31,7 @@ class CandidatureController extends Controller
         //echo $candidature;
         if($candidature == 0){
             //File::makeDirectory('storage/dossier'.$email, 0777, true);
+            
             $pathCV = $request->file('curriculumvitae')->storeAs('dossier_'.$email, $request->file('curriculumvitae')->getClientOriginalName());
             $pathCV = $request->file('formulaireInscription')->storeAs('dossier_'.$email, $request->file('formulaireInscription')->getClientOriginalName());
             $pathLDM = $request->file('lettermotivation')->storeAs('dossier_'.$email, $request->file('lettermotivation')->getClientOriginalName());
@@ -62,8 +63,7 @@ class CandidatureController extends Controller
                 Session::flash('messageError', "Erreur lors de la candidature");
                 return Redirect::back();
             }
-    }
-
+        }
         else{
             //il existe déjà une candidature de cet étudiant
             //return redirect()->back()->with(['message' => 'Vous avez déjà candidaté']);

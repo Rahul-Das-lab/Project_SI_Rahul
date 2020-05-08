@@ -8,7 +8,7 @@ class User extends Model
 {
     public $timestamps = false;
     protected $fillable = [
-        'name', 'firstname', 'password', 'card_id', 'birth_date', 'address', 'notel', 'email', 'type', 'comment',
+        'name', 'firstname', 'password', 'card_id', 'birth_date', 'address', 'notel', 'email', 'type_id', 'comment',
     ];
     protected $primaryKey = "email";
 
@@ -20,5 +20,10 @@ class User extends Model
 
     public function candidature(){
         return $this->hasOne('App\Candidature', 'email', 'email');
+    }
+
+    //Type of user
+    public function type(){
+        return $this->hasOne('App\Type', 'type', 'type');
     }
 }

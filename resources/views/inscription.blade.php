@@ -6,7 +6,7 @@
 	<link rel="stylesheet" type="text/css" href="{{ asset('css/style.css') }}">
 </head>
 	<body>
-        
+	<a class="btn btn-primary" href="/home" role="button">Home</a>
 		<div class="mainzone">
 		<form method="POST" action="/addUser">
             @csrf
@@ -42,9 +42,14 @@
 		  </div>
 		  <div class="form-group">
 		    <label>Numéro de téléphone</label>
-		    <input type="number" class="form-control" id="notel" placeholder="Numéro de téléphone" name="notel" value="{{ old('notel') }}" required>
+		    <input type="tel" class="form-control" id="notel" placeholder="Numéro de téléphone" name="notel" value="{{ old('notel') }}" required>
 		  </div>
-			
+		  <input type="number" name="type_id" value="2" hidden>
+		  	@if (Session::has('messageSuccess'))
+   			    <div class="alert alert-info">{{ Session::get('messageSuccess') }}</div>
+			@elseif (Session::has('messageError'))
+   			    <div class="alert alert-danger">{{ Session::get('messageError') }}</div>
+			@endif
 		  <button type="submit" class="btn btn-success" style="width:100%">Valider</button>
 		  
 		</form>

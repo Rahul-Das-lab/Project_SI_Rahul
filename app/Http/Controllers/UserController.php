@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 use Redirect;
 use Session;
+use Auth;
 use App\User;
 use Illuminate\Http\Request;
 
@@ -20,6 +21,7 @@ class UserController extends Controller
         $birth_date = $request->input("datenaiss");
         $address = $request->input("adrpostale");
         $notel = $request->input("notel");
+        $type_id = $request->input("type_id");
         
         $check = User::find($email);
         if(!$check){
@@ -31,14 +33,15 @@ class UserController extends Controller
                 "card_id" => $password,
                 "birth_date" => $birth_date,
                 "address" => $address,
-                "notel" => $notel
+                "notel" => $notel,
+                "type_id" => $type_id
             ]);
             if($var != NULL){
                 return $this->connexionUser($request);
             }
         }
         else{
-            Session::flash('errorInscription', 'email déjà utilisé');
+            Session::flash('messageError', 'Cette adresse mail a déjà été utilisé');
             return redirect('inscription')->withInput(
                 $request->except('password')
             );
@@ -47,20 +50,25 @@ class UserController extends Controller
     }
 
     public function connexionUser(Request $request){
+        $request->flashExcept('password');
         $email = $request->input("email");
         $password = $request->input("password");
 
         $var = User::where(["email"=>$email, "password"=>$password])->first();
         if($var != NULL){
-            session()->put('user',$var);
+
+            session()->put('user', $var);
+            //dd($t);
+            //echo $var->admin;
             return redirect("home");
         }
         else{
-            return view("connexion");
+            Session::flash('messageError', "Connexion impossible, vérifiez vos identifiants");
+            return redirect('connexion')->withInput(
+                $request->except('password')
+            );
         }
-        // echo $email;
-        // echo $password;
-        // print_r($var);
+        
         
     }
 
@@ -100,11 +108,10 @@ class UserController extends Controller
         }
         else{
 
-            echo $email;
-            // Session::flash('messageError', "Erreur lors de la modification");
-            // return Redirect::back()->withInput(
-            //     $request->except('password')
-            // );
+            Session::flash('messageError', "Erreur lors de la modification");
+            return Redirect::back()->withInput(
+                $request->except('password')
+            );
             
         }
     }
@@ -133,7 +140,16 @@ class UserController extends Controller
 
 
 
+    public function listmsg(){
 
+        $users = User::all();
+        //dd($users);
+        return view("inbox", compact('users'));
+    }
+
+    public function addTeacher(Request $request){
+        return view("addTeacher");
+    }
 
 
 

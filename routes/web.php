@@ -14,6 +14,17 @@ use Illuminate\Support\Facades\Route;
 */
 
 
+//déconnexion
+Route::get('/logout', function() {
+    Session::forget('user');
+    return redirect('connexion');
+   });
+
+//Ajouter des professeurs
+Route::get('/admin/addTeacher', "UserController@addTeacher");
+
+//Admin messagerie
+Route::get("/admin/inbox", "UserController@listmsg");
 //Page d'accueil
 Route::get('/index', function () {
     return view("index");
@@ -24,6 +35,7 @@ Route::get('/home', function() {
     return view('home');
 });
 
+
 //Aller à la page inscription
 Route::get('/inscription', function () {
     return view("inscription");
@@ -31,6 +43,7 @@ Route::get('/inscription', function () {
 
 //Aller à modifer profil
 Route::get('/home/profil', function() {
+    
     return view('profil');
 });
 
@@ -46,9 +59,8 @@ Route::get('/home/apply', function() {
 
 //Aller à la page de dépôt de commentaire
 Route::get('/home/commentToAdmin', function() {
-    return view('commentToAdmin');
+        return view('commentToAdmin');
 });
-
 
 
 //Ajouter un user

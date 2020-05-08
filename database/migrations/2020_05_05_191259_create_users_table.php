@@ -16,6 +16,7 @@ class CreateUsersTable extends Migration
         Schema::create('users', function (Blueprint $table) {
             $table->primary('email');
             $table->string("email")->unique();
+            $table->bigInteger("type_id");
             $table->string("name")->nullable();
             $table->string("firstname")->nullable();
             $table->string("password");
@@ -23,8 +24,9 @@ class CreateUsersTable extends Migration
             $table->date("birth_date")->nullable();
             $table->string("address")->nullable();
             $table->string("notel")->nullable();
-            $table->boolean("type")->default(0);
             $table->string("comment")->nullable();
+
+            $table->foreign('type_id')->references('id')->on('type');
         });
     }
 
