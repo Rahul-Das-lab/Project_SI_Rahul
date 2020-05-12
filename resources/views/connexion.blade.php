@@ -1,14 +1,11 @@
-<!DOCTYPE html>
-<html>
-<head>
-	<meta charset="utf-8" />
-	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
-	<link rel="stylesheet" type="text/css" href="{{ asset('css/style.css') }}">
-</head>
-	<body>
-    <a class="btn btn-primary" href="/home" role="button">Home</a>
+@extends('layout.layout')
+
+@section('content')
 		<div class="mainzone" style="margin-top:15%">
         
+        @if(session('user')->email ?? "")
+        <h5 id="emailHelp" class="form-text alert alert-info">Vous êtes déjà connecté en tant que {{session('user')->email ?? ""}}, <a href="/logout">Se déconnecter</a> </h5>
+        @else
             <form method="POST" action="/connectUser">
                 @csrf
                 <h3> Connexion </h3>
@@ -27,6 +24,7 @@
 		    @endif
             <button type="submit" class="btn btn-success" style="width:100%">Valider</button>
             </form>
+        @endif
+
         </div>
-	</body>
-</html>
+@endsection

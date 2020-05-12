@@ -13,14 +13,21 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+//Page index
+Route::get('/', function() {
+    return redirect('home');
+});
 
 //déconnexion
 Route::get('/logout', function() {
     Session::forget('user');
     return redirect('connexion');
-   });
+});
 
-//Ajouter des professeurs
+//Lister les candidatures (prof)
+Route::get('/prof/candidatures', "CandidatureController@listCandidatures");
+
+//Page ajout de professeurs
 Route::get('/admin/addTeacher', "UserController@addTeacher");
 
 //Admin messagerie
@@ -61,6 +68,14 @@ Route::get('/home/apply', function() {
 Route::get('/home/commentToAdmin', function() {
         return view('commentToAdmin');
 });
+
+
+//Changer statut
+Route::post('/changeStatut', 'CandidatureController@updateStatut');
+
+
+//Traitement ajouter un professeur par admin
+Route::post('/newTeacher', 'UserController@newTeacher');
 
 
 //Ajouter un user

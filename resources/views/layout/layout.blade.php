@@ -9,43 +9,64 @@
     <link rel="stylesheet" type="text/css" href="{{ asset('css/style.css') }}">
     <script src="{{ asset('js/javascript.js')}}"> </script>
     <script src="https://use.fontawesome.com/7dd193d3c9.js"></script>
+    
 
 
 
 </head>
 <body>
     <div id="app">
-        <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
+        <nav class="navbar navbar-expand-md navbar-light shadow p-3 mb-5 rounded" style="background-color: #a5cbf8;">
             <div class="container">
-                <a class="navbar-brand" href="/home">
-                    GCM Nanterre
+                <a class="navbar-brand text-white" href="/home">
+                    <h3>GCM</h3>
                 </a>
-                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
+                
 
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                   
+                    <!-- Element de navigation à gauche  -->
                 </div>
+                <!-- Element de navigation à droite  -->
                 @if(session('user')->email ?? '')
-                        <!-- <ul style="text-align:left">
-                            {{session('user')->email}}
-                        </ul> -->
-                
+                <ul class="navbar-nav mr-auto">
+                <li class="nav-item">
+                    @if(session('user')->type_id == 1)
+                        <span class="navbar-brand nav-link text-grey text-muted" style="font-size:20px" href="/home">
+                            Administrateur
+                        </span>
+                    @elseif(session('user')->type_id == 2)
+                        <span class="navbar-brand nav-link text-grey text-muted" style="font-size:20px" href="/home">
+                            Étudiant
+                        </span>
+                    @else
+                        <span class="navbar-brand nav-link text-grey text-muted" style="font-size:20px" href="/home">
+                            Professeur
+                        </span>
+                    @endif
+                </li>
+                </ul>
                     <div class="dropdown">
                         @if ( session('user')->name != null )
-                            <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">{{ session('user')->name }}</button>
+                            <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">{{ session('user')->name }} {{ session('user')->firstname }}</button>
                         @else
                         <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">{{ session('user')->email }}</button>
                         @endif
                         <ul class="dropdown-menu">
-                            <li><a href="/home/profil">Profil</a></li>
-                            <li><a href="/logout">Déconnexion</a></li>
+                            <li>&nbsp;<a href="/home/profil"><i class="fa fa-user" aria-hidden="true"></i>&nbsp; Profil</a></li>
+                            <li>&nbsp;<a href="/logout"><i class="fa fa-power-off" aria-hidden="true"></i>&nbsp; Déconnexion</a></li>
                         </ul>
                     </div>
                     <form id="logout-form" action="\logout" method="POST" style="display: none;">
                         @csrf
                     </form>
+                @else
+                <div class="dropdown">
+                        <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">Vous n'êtes pas connecté</button>
+                        <ul class="dropdown-menu">
+                            <li>&nbsp;<a href="/connexion">Connexion</a></li>
+                            <li>&nbsp;<a href="/inscription">Inscription</a></li>
+                        </ul>
+                    </div>
                 @endif
             </div>
         </nav>

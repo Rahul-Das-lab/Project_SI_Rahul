@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 use Redirect;
 use Session;
+use File;
+use Illuminate\Support\Facades\Storage;
 use Auth;
 use App\User;
 use Illuminate\Http\Request;
@@ -86,7 +88,6 @@ class UserController extends Controller
         
         $user = User::find($email);
         if($user){
-
             $user->update([
                 "email"=>$email,
                 "name"=>$name,
@@ -97,9 +98,6 @@ class UserController extends Controller
                 "address"=>$address,
                 "notel"=>$notel
                 ]);
-
-            
-
             $user->save();
 
             session()->put('user',$user);
@@ -142,17 +140,78 @@ class UserController extends Controller
 
     public function listmsg(){
 
-        $users = User::all();
+        $users = User::where(["type_id"=>2])->get();
         //dd($users);
-        return view("inbox", compact('users'));
+        return view("admin/inbox", compact('users'));
     }
 
-    public function addTeacher(Request $request){
-        return view("addTeacher");
+    public function addTeacher(){
+        return view("admin/addTeacher");
     }
 
 
+    public function newTeacher(Request $request){
+        $email_1 = $request->input('email_1');
+        $password_1 = $request->input('password_1');
+        $email_2 = $request->input('email_2');
+        $password_2 = $request->input('password_2');
+        $email_3 = $request->input('email_3');
+        $password_3 = $request->input('password_3');
+        $email_4 = $request->input('email_4');
+        $password_4 = $request->input('password_4');
+        $email_5 = $request->input('email_5');
+        $password_5 = $request->input('password_5');
 
+        // for($i=1; $i<=5; $i++){
+        //     $test = ($email_ . $i);
+        //     User::create([
+        //         "email" => $email_ . '' . $i,
+        //         "password" => $password_ . '' . $i,
+        //     ]);
+        // }
+
+        User::create([
+            "email" => $email_1,
+            "type_id" => 3,
+            "password" => $password_1
+        ]);
+        User::create([
+            "email" => $email_2,
+            "type_id" => 3,
+            "password" => $password_2
+        ]);
+        User::create([
+            "email" => $email_3,
+            "type_id" => 3,
+            "password" => $password_3
+        ]);
+        User::create([
+            "email" => $email_4,
+            "type_id" => 3,
+            "password" => $password_4
+        ]);
+        User::create([
+            "email" => $email_5,
+            "type_id" => 3,
+            "password" => $password_5
+        ]);
+
+        //$test = [$email_1, $password_1];
+        $request->session()->flash('email_1', $email_1);
+        $request->session()->flash('password_1', $password_1);
+        $request->session()->flash('email_2', $email_2);
+        $request->session()->flash('password_2', $password_2);
+        $request->session()->flash('email_3', $email_3);
+        $request->session()->flash('password_3', $password_3);
+        $request->session()->flash('email_4', $email_4);
+        $request->session()->flash('password_4', $password_4);
+        $request->session()->flash('email_5', $email_5);
+        $request->session()->flash('password_5', $password_5);
+        
+        Session::flash('messageSuccess', "Professeurs ajoutés ! Veillez à enregistrer et transmettre les identifiants des professeurs créés avant d'en créer de nouveaux");
+        return Redirect::back();
+        
+    }
 
 
 

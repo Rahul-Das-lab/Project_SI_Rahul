@@ -12,13 +12,13 @@ class Candidature extends Model
     ];
 
     public function user(){
-        return $this->belongsTo('App\Users');
+        return $this->belongsTo('App\User', 'email', 'email');
     }
     public function status(){
         return $this->belongsTo('App\Status');
     }
     public function formation(){
-        return $this->belongsTo('App\Candidature');
+        return $this->belongsTo('App\Formation');
     }
 
 }

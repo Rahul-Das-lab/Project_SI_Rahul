@@ -17,13 +17,12 @@ form{
 	width:100%;
 }
 table {
-	border-collapse: separate;
+	border-collapse: collapse;
 	width : 100%;
   }
   
   th, td {
-	border: 1px solid Gray;
-	padding: 5px;
+	padding: 1px;
 	text-align: center;
   }
 
@@ -43,4 +42,24 @@ table {
 	overflow:auto; 
 	border:none; 
 	background-color:#f8f8f8;
+}
+
+.display-5 {
+	font-size: 3rem;
+    font-weight: 300;
+    line-height: 1.2;	
+}
+
+
+
+.btn-download{
+	background-color: #0099CC;
+	border: 0.5px solid black;
+	border-radius: 5px;
+	color:white;
+	border-color: azure;
+	
+}
+.btn-download:hover{
+	color:rgb(203, 216, 241);
 }

@@ -1,12 +1,6 @@
-<!DOCTYPE html>
-<html>
-<head>
-	<meta charset="utf-8" />
-	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
-	<link rel="stylesheet" type="text/css" href="{{ asset('css/style.css') }}">
-</head>
-	<body>
-	<a class="btn btn-primary" href="/home" role="button">Home</a>
+@extends('layout.layout')
+
+@section('content')
 		<div class="mainzone">
 		<form method="POST" action="/addUser">
             @csrf
@@ -29,7 +23,7 @@
 		    <input type="password" class="form-control" id="mdp" placeholder="Mot de passe" name="password" required>
 		  </div>
 		  <div class="form-group">
-		    <label>Numéro de carte d'étudiant</label>
+		    <label>Numéro de carte d'identité</label>
 		    <input type="text" class="form-control" id="nocarteid" placeholder="Numéro de carte étudiant" name="nocarteid" value = "{{ old('nocarteid') }}" required>
 		  </div>
 		  <div class="form-group">
@@ -54,5 +48,4 @@
 		  
 		</form>
         </div>
-	</body>
-</html>
+@endsection

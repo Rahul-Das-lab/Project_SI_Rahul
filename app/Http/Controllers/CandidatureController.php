@@ -1,13 +1,18 @@
 <?php
 
 namespace App\Http\Controllers;
-
-use Session;
 use Redirect;
+use Session;
+
 use File;
 use Illuminate\Support\Facades\Storage;
-use App\Candidature;
+use Auth;
+use App\User;
 use Illuminate\Http\Request;
+
+use App\Candidature;
+use App\Status;
+
 
 class CandidatureController extends Controller
 {
@@ -33,7 +38,7 @@ class CandidatureController extends Controller
             //File::makeDirectory('storage/dossier'.$email, 0777, true);
             
             $pathCV = $request->file('curriculumvitae')->storeAs('dossier_'.$email, $request->file('curriculumvitae')->getClientOriginalName());
-            $pathCV = $request->file('formulaireInscription')->storeAs('dossier_'.$email, $request->file('formulaireInscription')->getClientOriginalName());
+            $pathFormulaireInscription = $request->file('formulaireInscription')->storeAs('dossier_'.$email, $request->file('formulaireInscription')->getClientOriginalName());
             $pathLDM = $request->file('lettermotivation')->storeAs('dossier_'.$email, $request->file('lettermotivation')->getClientOriginalName());
             $pathNotes = $request->file('notes')->storeAs('dossier_'.$email, $request->file('notes')->getClientOriginalName());
             $pathScreenshotENT = $request->file('screenshotENT')->storeAs('dossier_'.$email, $request->file('screenshotENT')->getClientOriginalName());
@@ -73,97 +78,47 @@ class CandidatureController extends Controller
     }
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function index()
-    {
-        //
+    public function listCandidatures(){
+        $appliances = Candidature::all();
+        //dd($appliances);
+        $statuses = Status::all();
+        return view("prof/candidatures", compact('appliances', 'statuses'));
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
+
+    public function updateStatut(Request $request){
+        $statut = $request->input('statut');
+        $mail = $request->input('mail');
+        //dd($statut);
+        //Session::flash('statut', $statut);
+
+        $existCand = Candidature::where(['email' => $mail])
+            ->update(['status_id'=> $statut]);
+
+        //dd($existCand);
+        // $existCand->update([
+        //     "statut_id"=>$statut
+        //     ]);
+        
+        //$existCand->status_id = $statut;
+        //$existCand->save();
+
+        
+        return Redirect::back();
+        
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
-    {
-        //
-    }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Candidature  $candidature
-     * @return \Illuminate\Http\Response
-     */
-    public function show(Candidature $candidature)
-    {
-        //
-    }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Candidature  $candidature
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(Candidature $candidature)
-    {
-        //
-    }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Candidature  $candidature
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, Candidature $candidature)
-    {
-        //
-    }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Candidature  $candidature
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy(Candidature $candidature)
-    {
-        //
-    }
+
+
+
+
+
+
+
+
+
 }

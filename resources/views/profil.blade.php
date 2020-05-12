@@ -5,7 +5,19 @@
     @if (session('user')->email ?? "")
         <form method="POST" action="/modifProfil">
         @csrf
-                    
+                @if(session('user')->type_id == 1 || session('user')->type_id == 3)
+                    <h3> Modification profil </h3>
+                    <div class="form-group">
+                        <label>Adresse email</label>
+                        <input type="email" class="form-control alert alert-danger" value="{{ session('user')->email }}" disabled>
+                        <small id="emailHelp" class="form-text text-muted">Vous ne pouvez pas modifier votre adresse mail</small>
+                    </div>
+                    <input type="email" class="form-control alert alert-danger" id="email" placeholder="Votre adresse mail" name="email" value="{{ session('user')->email }}" hidden>
+                    <div class="form-group">
+                        <label>Mot de passe :</label>
+                        <input type="password" class="form-control " id="mdp" placeholder="Choisissez un nouveau mot de passe" name="password" required>
+                    </div>
+                @else
                 <h3> Modification profil </h3>
                 <div class="form-group">
                     <label>Adresse email</label>
@@ -41,6 +53,7 @@
                     <label>Mot de passe :</label>
                     <input type="password" class="form-control" id="mdp" placeholder="Choisissez un nouveau mot de passe" name="password" required>
                 </div>
+                @endif
                 @if (Session::has('messageSuccess'))
                     <div class="alert alert-info">{{ Session::get('messageSuccess') }}</div>
                 @elseif (Session::has('messageError'))
