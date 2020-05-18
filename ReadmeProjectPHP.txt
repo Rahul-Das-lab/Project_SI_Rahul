@@ -49,12 +49,15 @@ Afin de pouvoir tester le projet il faut que vous installiez Laravel en plusieur
 	7 - Lancez le serveur à l'aide de la commande :
 		- php artisan serve
 
-		- Attention : Il se peut que votre antivirus supprime un fichier créer par composer : "serve.php".
-		  Si ce fichier est supprimé vous ne pourrez pas lancer le projet, je mettrais une copie
-		  de ce fichier avec mon projet, vous devrez désactiver votre système anti-virus et ajouter
-		  ce fichier à la racine du projet (directement dans le dossier Projet-SI).
+		- Attention : Si le serveur ne se lance pas, vérifiez que vous possédez bien
+			      le fichier serve.php dans la racine du projet.
+			(Il se peut que votre antivirus supprime un fichier créer par composer : "serve.php".
+		  	Si ce fichier est supprimé vous ne pourrez pas lancer le projet, je mettrais une copie
+		  	de ce fichier avec mon projet, vous devrez désactiver votre système anti-virus et ajouter
+		  	ce fichier à la racine du projet (directement dans le dossier Projet-SI-master).)
 
 		- le projet a été créée et vous pouvez accéder au site localhost avec
 		  l'url : 127.0.0.1:8000/
 
 Vous pouvez maintenant tester mon projet.
+Contactez moi pour tout problèmes.
