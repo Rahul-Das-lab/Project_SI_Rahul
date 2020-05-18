@@ -19,8 +19,8 @@
                     <table class="table table-bordered" >
                             <thead class="thead-dark">
                                 <tr>
-                                <th scope="col">Emails</th>
-                                <th scope="col">Mot de passes</th>
+                                <th scope="col">Étudiant</th>
+                                <th scope="col">Commentaire</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -28,7 +28,7 @@
                                     @if($user->comment != null)
                                         <tr>
                                         <td scope="row" style="border: 1px solid #98afaf;">
-                                            {{$user->email}}
+                                            {{$user->name}} {{$user->firstname}}
                                         </td>
                                         <td style="border: 1px solid #98afaf;">
                                             <textarea class="comment" disabled>{{$user->comment}}</textarea>

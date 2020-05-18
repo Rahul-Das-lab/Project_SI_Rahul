@@ -52,8 +52,8 @@
                         <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">{{ session('user')->email }}</button>
                         @endif
                         <ul class="dropdown-menu">
-                            <li>&nbsp;<a href="/home/profil"><i class="fa fa-user" aria-hidden="true"></i>&nbsp; Profil</a></li>
-                            <li>&nbsp;<a href="/logout"><i class="fa fa-power-off" aria-hidden="true"></i>&nbsp; Déconnexion</a></li>
+                            <li>&nbsp;<a href="/home/profil" class="text-decoration-none"><i class="fa fa-user" aria-hidden="true"></i>&nbsp; Profil</a></li>
+                            <li>&nbsp;<a href="/logout" class="text-decoration-none"><i class="fa fa-power-off" aria-hidden="true"></i>&nbsp; Déconnexion</a></li>
                         </ul>
                     </div>
                     <form id="logout-form" action="\logout" method="POST" style="display: none;">
@@ -63,8 +63,8 @@
                 <div class="dropdown">
                         <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">Vous n'êtes pas connecté</button>
                         <ul class="dropdown-menu">
-                            <li>&nbsp;<a href="/connexion">Connexion</a></li>
-                            <li>&nbsp;<a href="/inscription">Inscription</a></li>
+                            <li>&nbsp;<a href="/connexion" class="text-decoration-none">Connexion</a></li>
+                            <li>&nbsp;<a href="/inscription" class="text-decoration-none">Inscription</a></li>
                         </ul>
                     </div>
                 @endif
