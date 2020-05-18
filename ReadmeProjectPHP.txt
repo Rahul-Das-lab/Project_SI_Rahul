@@ -44,7 +44,7 @@ Afin de pouvoir tester le projet il faut que vous installiez Laravel en plusieur
 					autre nom si vous le souhaitez, il faudra changer la ligne 12 
 					Si vous avez nommé la base de données "projetsi" 
 					comme moi laissez projetsi dans la ligne 12.
-				- Importez ma base avec le script
+				- Importez ma base avec le fichier script "SQLprojetsi".
 
 	7 - Lancez le serveur à l'aide de la commande :
 		- php artisan serve
